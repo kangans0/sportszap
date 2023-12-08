@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image:url("https://i.pinimg.com/originals/d5/4b/b7/d54bb7ead95d5482ef994426cba4ddbf.jpg");background-size: cover;
+        }
+
+        header {
+            background-color: turquoise;
+            color: royalblue;
+            text-align: center;
+            padding: 1em;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #quiz-container {
+            text-align: left;
+        }
+
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option {
+            padding: 10px;
+            background-color: turquoise;
+            color: royalblue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .option:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        #prize {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sports Quiz</h1>
+    </header>
+
+    <main>
+        <div id="quiz-container">
+            <div id="result"></div>
+            <div id="prize"></div>
+            <div id="question" class="question"></div>
+            <div id="options" class="options"></div>
+        </div>
+    </main>
+
+    <script>
+        const quizData = [
+            {
+                question: "Which team won the latest FIFA World Cup?",
+                options: ["France", "Brazil", "Germany", "Spain"],
+                correctAnswer: "France",
+                prize: "Congratulations! You've won a football jersey."
+            },
+            {
+                question: "In which sport would you perform a slam dunk?",
+                options: ["Tennis", "Basketball", "Golf", "Swimming"],
+                correctAnswer: "Basketball",
+                prize: "Well done! You've won a basketball."
+            },
+            {
+                question: "Who is often referred to as 'The King' in tennis?",
+                options: ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Serena Williams"],
+                correctAnswer: "Roger Federer",
+                prize: "Fantastic! You've won a tennis racket."
+            },
+            {
+                question: "Which country hosted the 2016 Summer Olympics?",
+                options: ["Brazil", "USA", "China", "Russia"],
+                correctAnswer: "Brazil",
+                prize: "Great job! You've won an Olympic medal."
+            },
+            {
+                question: "How many players are there on a standard soccer team?",
+                options: ["9", "10", "11", "12"],
+                correctAnswer: "11",
+                prize: "Awesome! You've won a soccer ball."
+            },
+            {
+                question: "Who holds the record for the most home runs in MLB history?",
+                options: ["Babe Ruth", "Hank Aaron", "Barry Bonds", "Ken Griffey Jr."],
+                correctAnswer: "Barry Bonds",
+                prize: "Outstanding! You've won a baseball bat."
+            },
+            {
+                question: "Which country has won the most Olympic gold medals?",
+                options: ["USA", "China", "Russia", "Germany"],
+                correctAnswer: "USA",
+                prize: "Brilliant! You've won a gold medal."
+            },
+            {
+                question: "What is the national sport of Japan?",
+                options: ["Sumo Wrestling", "Karate", "Judo", "Kendo"],
+                correctAnswer: "Sumo Wrestling",
+                prize: "Impressive! You've won a sumo wrestling belt."
+            },
+            {
+                question: "Who won the 2021 Wimbledon Men's Singles title?",
+                options: ["Novak Djokovic", "Roger Federer", "Rafael Nadal", "Andy Murray"],
+                correctAnswer: "Novak Djokovic",
+                prize: "Well played! You've won a Wimbledon souvenir."
+            },
+            {
+                question: "In which year did Michael Phelps win eight gold medals in a single Olympic Games?",
+                options: ["2004", "2008", "2012", "2016"],
+                correctAnswer: "2008",
+                prize: "Incredible! You've won a swimming cap."
+            }
+            // Add more questions and answers as needed
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const resultElement = document.getElementById('result');
+        const prizeElement = document.getElementById('prize');
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function showQuestion() {
+            const currentQuizData = quizData[currentQuestion];
+
+            questionElement.textContent = currentQuizData.question;
+            optionsElement.innerHTML = '';
+
+            currentQuizData.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.classList.add('option');
+                button.textContent = option;
+                button.addEventListener('click', () => checkAnswer(option));
+                optionsElement.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selectedOption) {
+            const currentQuizData = quizData[currentQuestion];
+
+            if (selectedOption === currentQuizData.correctAnswer) {
+                score++;
+                resultElement.textContent = 'Correct!';
+                prizeElement.textContent = currentQuizData.prize;
+            } else {
+                resultElement.textContent = 'Wrong answer.';
+                prizeElement.textContent = '';
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < quizData.length) {
+                showQuestion();
+            } else {
+                quizContainer.innerHTML = `<h2>Quiz Completed!</h2>
+                                           <p>Your Score: ${score} out of ${quizData.length}</p>`;
+            }
+        }
+
+        showQuestion();
+    </script>
+</body>
+</html>

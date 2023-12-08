@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image:url("https://assets-global.website-files.com/634fa4e5766bef420eeb39e1/648b148a8e2fa44b6d6b35de_67cff18f-07b1-46d1-a41c-cb2e4dd923da_b2b-payment-processing-thumb%20(1).jpg"); background-repeat: cover;
+        }
+
+        header {
+            background-color: royalblue;
+            color: gold;
+            text-align: center;
+            padding: 1em;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Secure Payment</h1>
+    </header>
+
+    <main>
+        <form>
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+
+            <label for="expiryDate">Expiry Date</label>
+            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" name="cvv" placeholder="123" required>
+
+            <label for="cardHolder">Cardholder Name</label>
+            <input type="text" id="cardHolder" name="cardHolder" placeholder="John Doe" required>
+
+            <button type="submit">Make Payment</button>
+            <p><center>OR</center></p>
+            <button type="submit">Make UPI payment</button>
+        </form>
+    </main>
+</body>
+</html>
